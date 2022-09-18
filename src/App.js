@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import Form from './components/Form';
 import ContactList from './components/ContactList';
+import Filter from './components/Filter';
 
 export default class App extends Component {
   state = {
@@ -15,6 +16,9 @@ export default class App extends Component {
   };
 
   addContact = data => {
+    if (this.isDublicate(data)) {
+      return alert(`${data.name} is already in contacts`);
+    }
     this.setState(prevState => {
       const newContact = {
         id: nanoid(),
@@ -45,24 +49,39 @@ export default class App extends Component {
     return filteredContacts;
   }
 
+  isDublicate({ name }) {
+    const { contacts } = this.state;
+    const result = contacts.find(contact => contact.name === name);
+    return result;
+  }
+  removeBook = id => {
+    this.setState(prevState => {
+      const newListContacts = prevState.contacts.filter(
+        contact => contact.id !== id
+      );
+      return {
+        contacts: newListContacts,
+      };
+    });
+  };
+
   render() {
     const filterId = nanoid();
-    const constacts = this.getFilteredContacts();
+    const contacts = this.getFilteredContacts();
+
     return (
-      <>
-        <h2>Phonebook</h2>
+      <div>
+        <h1>Phonebook</h1>
         <Form addContact={this.addContact} />
-        <h3>Contacts</h3>
-        <label htmlFor={filterId}>Find contacts by name</label>
-        <input
-          id={filterId}
-          type="text"
-          name="filter"
-          value={this.filter}
-          onChange={this.handleChange}
+
+        <h2>Contacts</h2>
+        <Filter
+          filterId={filterId}
+          filter={this.state.filter}
+          handleChange={this.handleChange}
         />
-        <ContactList items={constacts} />
-      </>
+        <ContactList items={contacts} removeBook={this.removeBook} />
+      </div>
     );
   }
 }
