@@ -24,6 +24,11 @@ export const FirstInput = styled.input`
     color:white;
     padding-left: 30px;
     border-color: white;
+    &:hover,
+    &focus {
+        scale:1.1;
+        margin-top: 4px;
+    }
 `
 export const SecondInput = styled.input`
     background-color: #296cf1;
@@ -34,6 +39,11 @@ export const SecondInput = styled.input`
     font-size: 40px;
     font-style: italic;
     color:white;
+    &:hover,
+    &focus {
+        scale:1.1;
+        margin-top: 4px;
+    }
 `
 export const FormButton = styled.button`
     width: 150px;
@@ -49,4 +59,11 @@ export const FormButton = styled.button`
     font-style: italic;
     border-radius: 6px;
     border: none;
+
+    &:hover,
+    &:focus {
+        background-color: white;
+        color: gold;
+        scale:1.1;
+    }
 `

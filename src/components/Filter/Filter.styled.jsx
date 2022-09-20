@@ -30,4 +30,9 @@ export const FormInput = styled.input`
     font-style: italic;
     color:white;
     padding-left: 30px;
+     &:hover,
+    &focus {
+        scale:1.1;
+        margin-top: 50px;
+    }
 `

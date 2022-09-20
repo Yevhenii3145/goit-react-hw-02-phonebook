@@ -30,4 +30,10 @@ export const DeletButton = styled.button`
     font-style: italic;
     border-radius: 6px;
     border: none;
+    &:hover,
+    &:focus {
+        background-color: white;
+        color: greenyellow;
+        scale:1.2;
+    }
 `
