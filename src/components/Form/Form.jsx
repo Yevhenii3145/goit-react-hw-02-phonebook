@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { nanoid } from 'nanoid';
+import { FormMarcup, FormLabel, FirstInput, SecondInput, FormButton } from './Form.styled'
+
 
 export default class Form extends Component {
     state = {
@@ -28,9 +30,9 @@ export default class Form extends Component {
     render() {
         
     return (
-        <form onSubmit={this.handleSubmit}>
-            <label htmlFor={this.inputNameId}>Name</label>
-            <input
+        <FormMarcup onSubmit={this.handleSubmit}>
+            <FormLabel htmlFor={this.inputNameId}>Name</FormLabel>
+            <FirstInput
             id={this.inputNameId}
             type="text"
             name="name"
@@ -41,8 +43,8 @@ export default class Form extends Component {
             required
             />
             
-            <label htmlFor={this.inputPhoneId}>Phone</label>
-            <input
+            <FormLabel htmlFor={this.inputPhoneId}>Phone</FormLabel>
+            <SecondInput
             id={this.inputPhoneId}
             type="tel"
             name="number"
@@ -52,8 +54,8 @@ export default class Form extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
 />
-            <button type='submit'>Add contact</button>
-        </form>
+            <FormButton type='submit'>Add contact</FormButton>
+        </FormMarcup>
     )
   }
 }

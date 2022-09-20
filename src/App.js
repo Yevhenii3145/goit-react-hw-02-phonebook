@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import Form from './components/Form';
-import ContactList from './components/ContactList';
-import Filter from './components/Filter';
+import Form from './components/Form/Form';
+import ContactList from './components/ContactList/ContactList';
+import Filter from './components/Filter/Filter';
+import { Container } from './components/Container/Container.styled';
+import { TitlePage } from './components/Title/Title';
+import { Heading } from './components/Heading/Heading';
 
 export default class App extends Component {
   state = {
@@ -25,7 +28,7 @@ export default class App extends Component {
         ...data,
       };
       return {
-        contacts: [...prevState.contacts, newContact],
+        contacts: [newContact, ...prevState.contacts],
       };
     });
   };
@@ -70,18 +73,18 @@ export default class App extends Component {
     const contacts = this.getFilteredContacts();
 
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <Container>
+        <TitlePage text={'Phonebook'}></TitlePage>
         <Form addContact={this.addContact} />
 
-        <h2>Contacts</h2>
+        <Heading text={'Contacts'}></Heading>
         <Filter
           filterId={filterId}
           filter={this.state.filter}
           handleChange={this.handleChange}
         />
         <ContactList items={contacts} removeBook={this.removeBook} />
-      </div>
+      </Container>
     );
   }
 }
